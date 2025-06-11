@@ -5,11 +5,18 @@ export default function ArtworkDetail({ artwork }) {
   return (
     <>
       <SEOHead title={artwork.title} />
-      <main className="container mx-auto p-4">
-        <h1 className="text-4xl font-bold mb-4">{artwork.title}</h1>
-        <img src={artwork.image} alt={artwork.title} className="w-full h-auto" />
-        <div className="mt-4" dangerouslySetInnerHTML={{ __html: artwork.html }} />
-      </main>
+      <div className="max-w-3xl mx-auto">
+        <h1 className="text-4xl font-bold mb-8 text-center">{artwork.title}</h1>
+        <img
+          src={artwork.image}
+          alt={artwork.title}
+          className="w-full h-auto mb-8 rounded"
+        />
+        <div
+          className="prose mx-auto"
+          dangerouslySetInnerHTML={{ __html: artwork.html }}
+        />
+      </div>
     </>
   )
 }
