@@ -38,11 +38,11 @@ export default function Home({ artworks, seo, about }) {
 }
 
 export async function getStaticProps() {
-  const artworks = getAllArtworks()
-  const seo = getSEO()
+  const artworks = await getAllArtworks()
+  const seo = await getSEO()
   const about = await (async () => {
     try {
-      const data = getAbout()
+      const data = await getAbout()
       const { remark } = await import('remark')
       const html = (await remark().use((await import('remark-html')).default).process(data.content)).toString()
       return { ...data, html }
