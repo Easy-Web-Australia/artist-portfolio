@@ -21,7 +21,7 @@ export default function About({ about }) {
 
 export async function getStaticProps() {
   try {
-    const data = getAbout()
+    const data = await getAbout()
     const processed = await remark().use(html).process(data.content)
     data.html = processed.toString()
     return { props: { about: data } }

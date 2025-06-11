@@ -16,7 +16,7 @@ export default function Portfolio({ artworks }) {
 }
 
 export async function getStaticProps() {
-  const artworks = getAllArtworks()
+  const artworks = await getAllArtworks()
   return {
     props: {
       artworks: artworks && artworks.length > 0 ? artworks : dummyArtworks
