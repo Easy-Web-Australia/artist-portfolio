@@ -1,20 +1,25 @@
 import ArtworkGrid from '../components/ArtworkGrid'
 import SEOHead from '../components/SEOHead'
 import { getAllArtworks } from '../lib/api'
+import { dummyArtworks } from '../lib/dummyData'
 
 export default function Portfolio({ artworks }) {
   return (
     <>
       <SEOHead title="Portfolio" />
-      <main className="container mx-auto p-4">
-        <h1 className="text-4xl font-bold mb-4">Portfolio</h1>
+      <div>
+        <h1 className="text-4xl font-bold mb-8 text-center">Portfolio</h1>
         <ArtworkGrid artworks={artworks} />
-      </main>
+      </div>
     </>
   )
 }
 
 export async function getStaticProps() {
   const artworks = getAllArtworks()
-  return { props: { artworks } }
+  return {
+    props: {
+      artworks: artworks && artworks.length > 0 ? artworks : dummyArtworks
+    }
+  }
 }
