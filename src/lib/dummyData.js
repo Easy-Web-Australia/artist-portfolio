@@ -47,3 +47,8 @@ export const dummyAbout = {
   title: 'About the Artist',
   html: '<p>This is sample text about the artist. It describes a creative journey and artistic vision.</p>'
 }
+
+export const dummySEO = {
+  meta_title: 'Artist Portfolio',
+  meta_description: 'A showcase of artworks'
+}

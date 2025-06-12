@@ -1,5 +1,5 @@
 import SEOHead from '../../components/SEOHead'
-import { getAllArtworkSlugs, getArtworkBySlug } from '../../lib/api'
+import { dummyArtworks } from '../../lib/dummyData'
 
 export default function ArtworkDetail({ artwork }) {
   return (
@@ -22,14 +22,13 @@ export default function ArtworkDetail({ artwork }) {
 }
 
 export async function getStaticPaths() {
-  const slugs = getAllArtworkSlugs()
   return {
-    paths: slugs.map((slug) => ({ params: { slug } })),
+    paths: dummyArtworks.map((art) => ({ params: { slug: art.slug } })),
     fallback: false
   }
 }
 
 export async function getStaticProps({ params }) {
-  const artwork = await getArtworkBySlug(params.slug)
+  const artwork = dummyArtworks.find((a) => a.slug === params.slug)
   return { props: { artwork } }
 }

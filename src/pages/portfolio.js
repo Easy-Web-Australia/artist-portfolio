@@ -1,6 +1,5 @@
 import ArtworkGrid from '../components/ArtworkGrid'
 import SEOHead from '../components/SEOHead'
-import { getAllArtworks } from '../lib/api'
 import { dummyArtworks } from '../lib/dummyData'
 
 export default function Portfolio({ artworks }) {
@@ -16,10 +15,9 @@ export default function Portfolio({ artworks }) {
 }
 
 export async function getStaticProps() {
-  const artworks = await getAllArtworks()
   return {
     props: {
-      artworks: artworks && artworks.length > 0 ? artworks : dummyArtworks
+      artworks: dummyArtworks
     }
   }
 }
