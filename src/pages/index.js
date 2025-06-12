@@ -1,7 +1,6 @@
 import ArtworkGrid from '../components/ArtworkGrid'
 import SEOHead from '../components/SEOHead'
-import { getAllArtworks, getSEO, getAbout } from '../lib/api'
-import { dummyArtworks, dummyAbout } from '../lib/dummyData'
+import { dummyArtworks, dummyAbout, dummySEO } from '../lib/dummyData'
 
 export default function Home({ artworks, seo, about }) {
   return (
@@ -38,20 +37,11 @@ export default function Home({ artworks, seo, about }) {
 }
 
 export async function getStaticProps() {
-  const artworks = await getAllArtworks()
-  const seo = await getSEO()
-  const about = await (async () => {
-    try {
-      const data = await getAbout()
-      const { remark } = await import('remark')
-      const html = (await remark().use((await import('remark-html')).default).process(data.content)).toString()
-      return { ...data, html }
-    } catch (e) {
-      return dummyAbout
-    }
-  })()
-  const usableArtworks = artworks && artworks.length > 0 ? artworks : dummyArtworks
   return {
-    props: { artworks: usableArtworks, seo, about }
+    props: {
+      artworks: dummyArtworks,
+      seo: dummySEO,
+      about: dummyAbout
+    }
   }
 }

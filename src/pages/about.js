@@ -1,8 +1,5 @@
 import SEOHead from '../components/SEOHead'
-import { getAbout } from '../lib/api'
 import { dummyAbout } from '../lib/dummyData'
-import { remark } from 'remark'
-import html from 'remark-html'
 
 export default function About({ about }) {
   return (
@@ -20,12 +17,5 @@ export default function About({ about }) {
 }
 
 export async function getStaticProps() {
-  try {
-    const data = await getAbout()
-    const processed = await remark().use(html).process(data.content)
-    data.html = processed.toString()
-    return { props: { about: data } }
-  } catch (e) {
-    return { props: { about: dummyAbout } }
-  }
+  return { props: { about: dummyAbout } }
 }
